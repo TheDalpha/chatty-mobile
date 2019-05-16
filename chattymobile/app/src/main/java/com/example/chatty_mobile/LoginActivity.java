@@ -17,6 +17,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         getSupportActionBar().hide();
         final Intent create = new Intent(this, CreateActivity.class);
+
+        createBtn = findViewById(R.id.btnCreate);
         createBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

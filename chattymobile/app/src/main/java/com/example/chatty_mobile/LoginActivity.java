@@ -7,8 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 public class LoginActivity extends AppCompatActivity {
-
-    private Button loginBtn;
+  
     private Button createBtn;
 
     @Override
@@ -17,7 +16,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         getSupportActionBar().hide();
         final Intent create = new Intent(this, CreateActivity.class);
-
+      
         createBtn = findViewById(R.id.btnCreate);
         createBtn.setOnClickListener(new View.OnClickListener() {
             @Override

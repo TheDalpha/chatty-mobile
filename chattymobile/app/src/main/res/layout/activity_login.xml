@@ -38,6 +38,7 @@
                 android:textSize="24dp"
                 android:textStyle="bold" />
 
+
             <EditText
                 android:id="@+id/userName"
                 android:layout_width="200dp"
@@ -50,9 +51,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Password"
                 android:inputType="textPassword"/>
-
-
-
+          
             <Button
                 android:id="@+id/btnLogin"
                 android:layout_width="wrap_content"

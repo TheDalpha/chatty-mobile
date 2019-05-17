@@ -23,5 +23,6 @@ public class CreateActivity extends AppCompatActivity {
         password1 = findViewById(R.id.password1Et);
         password2 = findViewById(R.id.password2Et);
         createBtn = findViewById(R.id.btnCreate);
+
     }
 }

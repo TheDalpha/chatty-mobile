@@ -7,10 +7,12 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.chatty_mobile.R;
+import com.example.chatty_mobile.services.MessageService;
 
 public class LoginActivity extends AppCompatActivity {
   
     private Button createBtn;
+    private Button loginBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,12 +20,21 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         getSupportActionBar().hide();
         final Intent create = new Intent(this, CreateActivity.class);
+        final Intent chat = new Intent(this, ChatActivity.class);
       
         createBtn = findViewById(R.id.btnCreate);
         createBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(create);
+            }
+        });
+
+        loginBtn = findViewById(R.id.btnLogin);
+        loginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(chat);
             }
         });
     }

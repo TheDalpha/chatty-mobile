@@ -56,7 +56,7 @@ public class ChatActivity extends AppCompatActivity {
      */
     private void addItems(Message message) {
 
-        list.add(message.getMessage());
+        list.add(message.getUser().getUsername());
         aListAdapter.notifyDataSetChanged();
 
     }

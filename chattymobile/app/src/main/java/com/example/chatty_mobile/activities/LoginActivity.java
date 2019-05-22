@@ -29,6 +29,13 @@ public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
 
+    private Boolean isLoggedIn;
+
+    /**
+     * Runs when the instance is created
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,27 +55,34 @@ public class LoginActivity extends AppCompatActivity {
         txtEmail = findViewById(R.id.fieldEmail);
         txtPassword = findViewById(R.id.fieldPassword);
 
+        // Boolean
+        isLoggedIn = false;
 
+        /**
+         * When button Login is clicked
+         *
+         */
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(chat);
+                signIn(txtEmail.getText().toString(), txtPassword.getText().toString());
             }
+
         });
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-    }
-
+    /**
+     * Sign in with Firebase email and password
+     *
+     * @param email
+     * @param password
+     */
     private void signIn(String email, String password) {
-        Log.d(TAG, "signIn:" + email);
         if (!validateForm()) {
             return;
         }
+        // ChatIntent
+        final Intent chat = new Intent(this, ChatActivity.class);
 
         // [START sign_in_with_email]
         mAuth.signInWithEmailAndPassword(email, password)
@@ -76,19 +90,18 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "-----------------signInWithEmail:success-----------------------------");
+                            // Sign in success, opens the chat
                             FirebaseUser user = mAuth.getCurrentUser();
+                            startActivity(chat);
                         } else {
                             // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            Toast.makeText(LoginActivity.this, "--------------------------Authentication failed------------------------------.",
+                            Toast.makeText(LoginActivity.this, "Login failed: \nInvalid username or password.",
                                     Toast.LENGTH_SHORT).show();
                         }
 
                         // [START_EXCLUDE]
                         if (!task.isSuccessful()) {
-                            Log.d(TAG, "-------------------signInWithEmail:failed---------------------------");
+                            return;
                         }
                         // [END_EXCLUDE]
                     }
@@ -97,6 +110,11 @@ public class LoginActivity extends AppCompatActivity {
         // [END sign_in_with_email]
     }
 
+    /**
+     * Validates the Email and Password
+     *
+     * @return
+     */
     private boolean validateForm() {
         boolean valid = true;
 

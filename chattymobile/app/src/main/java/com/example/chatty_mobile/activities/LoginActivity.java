@@ -42,6 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         getSupportActionBar().hide();
         final Intent chat = new Intent(this, ChatActivity.class);
+        final Intent create = new Intent(this, CreateActivity.class);
 
         // [START initialize_auth]
         // Initialize Firebase Auth
@@ -70,11 +71,10 @@ public class LoginActivity extends AppCompatActivity {
 
         });
 
-        loginBtn = findViewById(R.id.btnLogin);
-        loginBtn.setOnClickListener(new View.OnClickListener() {
+        btnCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(chat);
+                startActivity(create);
             }
         });
     }

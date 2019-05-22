@@ -1,5 +1,6 @@
 package com.example.chatty_mobile.activities;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -60,6 +61,4 @@ public class ChatActivity extends AppCompatActivity {
         aListAdapter.notifyDataSetChanged();
 
     }
-
-
 }

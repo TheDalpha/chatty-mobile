@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.example.chatty_mobile.models.Message;
+import com.example.chatty_mobile.models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -28,7 +29,12 @@ public class MessageService {
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         Map<String, Object> map = document.getData();
                         Message message = new Message();
+                        User user = new User();
                         message.setMessage(map.get("content") + "");
+                        Map<String, Object> Sender = (Map) map.get("sender");
+                        user.setUsername(Sender.get("userName") + "");
+                        user.setAvatar(Sender.get("avatarUrl") + "");
+                        message.setUser(user);
                         apiService.onCallback(message);
 
                     }

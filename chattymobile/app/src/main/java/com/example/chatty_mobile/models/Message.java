@@ -20,13 +20,11 @@ public class Message {
         return _user;
     }
 
-    public float getTime() {
-        return _time;
-    }
+    public User setUser(User user) { return _user = user;}
 
-    public float setTime(float time) {
-        return _time = time;
-    }
+    public float getTime() {return _time; }
+
+    public float setTime(float time) {return _time = time; }
 
 
 }

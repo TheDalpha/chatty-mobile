@@ -69,6 +69,14 @@ public class LoginActivity extends AppCompatActivity {
             }
 
         });
+
+        loginBtn = findViewById(R.id.btnLogin);
+        loginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(chat);
+            }
+        });
     }
 
     /**

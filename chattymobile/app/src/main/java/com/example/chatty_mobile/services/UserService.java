@@ -25,7 +25,6 @@ public class UserService {
 
     public void create(String email, String password, String username, String avatarUrl) {
 
-        // in json - we need variables for the hardcoded uid and Email
         JSONObject postData = new JSONObject();
 
         try {

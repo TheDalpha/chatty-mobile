@@ -12,6 +12,7 @@ public class ListViewHolder {
     public TextView aTVItem;
     public TextView userName;
     public ImageView avatar;
+    public ImageView imgMessenge;
 
     /**
      * Gets the textview from the XML document
@@ -21,5 +22,6 @@ public class ListViewHolder {
         aTVItem = (TextView) base.findViewById(R.id.listTV);
         userName = (TextView) base.findViewById(R.id.userName);
         avatar = (ImageView) base.findViewById(R.id.avatarImage);
+        imgMessenge = (ImageView) base.findViewById(R.id.imgmsg);
     }
 }

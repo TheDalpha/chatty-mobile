@@ -6,7 +6,17 @@ public class Message {
 
     private User _user;
 
+    private Boolean _isFile;
+
     private float _time;
+
+    public Boolean getIsFile() {
+        return _isFile;
+    }
+
+    public Boolean setIsFile(Boolean isFile) {
+        return _isFile = isFile;
+    }
 
     public String getMessage() {
         return _content;

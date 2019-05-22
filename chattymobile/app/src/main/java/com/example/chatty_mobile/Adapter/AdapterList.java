@@ -2,6 +2,7 @@ package com.example.chatty_mobile.Adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,23 +10,21 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
 import com.example.chatty_mobile.R;
+import com.example.chatty_mobile.models.Message;
 import com.squareup.picasso.Picasso;
-
 import java.util.List;
 
 public class AdapterList extends BaseAdapter {
 
     private Activity aContext;
-    private List<String> _messageList;
+    private List<Message> _messageList;
     private List<String> _usernameList;
     private List<String> _avatarList;
     private LayoutInflater aLayoutInflator = null;
 
-    public AdapterList(Activity context, List<String> messageList, List<String> usernameList, List<String> avatarList) {
+    public AdapterList(Activity context, List<Message> messageList) {
         this.aContext = context;
         this._messageList = messageList;
-        this._usernameList = usernameList;
-        this._avatarList = avatarList;
         aLayoutInflator = (LayoutInflater) aContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -77,9 +76,17 @@ public class AdapterList extends BaseAdapter {
         } else {
             lvHolder = (ListViewHolder) v.getTag();
         }
-        lvHolder.aTVItem.setText(_messageList.get(position));
-        lvHolder.userName.setText(_usernameList.get(position));
-        Picasso.get().load(_avatarList.get(position)).into(lvHolder.avatar);
+        if(_messageList.get(position).getIsFile()) {
+            Picasso.get().load(_messageList.get(position).getMessage()).into(lvHolder.imgMessenge);
+            lvHolder.imgMessenge.setVisibility(View.VISIBLE);
+            lvHolder.aTVItem.setVisibility(View.GONE);
+        } else {
+            lvHolder.aTVItem.setVisibility(View.VISIBLE);
+            lvHolder.imgMessenge.setVisibility(View.GONE);
+            lvHolder.aTVItem.setText(_messageList.get(position).getMessage());
+        }
+        lvHolder.userName.setText(_messageList.get(position).getUser().getUsername());
+        Picasso.get().load(_messageList.get(position).getUser().getAvatar()).into(lvHolder.avatar);
         return v;
     }
 }

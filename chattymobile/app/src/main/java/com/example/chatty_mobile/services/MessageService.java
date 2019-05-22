@@ -30,6 +30,7 @@ public class MessageService {
                         Message message = new Message();
                         User user = new User();
                         message.setMessage(map.get("content") + "");
+                        message.setIsFile((Boolean) map.get("isFile"));
                         Map<String, Object> Sender = (Map) map.get("sender");
                         user.setUsername(Sender.get("userName") + "");
                         user.setAvatar(Sender.get("avatarUrl") + "");

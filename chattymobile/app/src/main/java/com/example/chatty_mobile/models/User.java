@@ -2,15 +2,19 @@ package com.example.chatty_mobile.models;
 
 public class User {
 
-    private String avatar;
+    private String _avatar;
 
-    private String username;
+    private String _username;
 
     public String getAvatar() {
-        return avatar;
+        return _avatar;
     }
 
+    public String setAvatar(String avatar) { return _avatar = avatar;}
+
     public String getUsername() {
-        return username;
+        return _username;
     }
+
+    public String setUsername(String username) { return _username = username;}
 }

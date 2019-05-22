@@ -1,6 +1,7 @@
 package com.example.chatty_mobile.Adapter;
 
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -9,6 +10,8 @@ import com.example.chatty_mobile.R;
 public class ListViewHolder {
 
     public TextView aTVItem;
+    public TextView userName;
+    public ImageView avatar;
 
     /**
      * Gets the textview from the XML document
@@ -16,5 +19,7 @@ public class ListViewHolder {
      */
     public ListViewHolder(View base) {
         aTVItem = (TextView) base.findViewById(R.id.listTV);
+        userName = (TextView) base.findViewById(R.id.userName);
+        avatar = (ImageView) base.findViewById(R.id.avatarImage);
     }
 }

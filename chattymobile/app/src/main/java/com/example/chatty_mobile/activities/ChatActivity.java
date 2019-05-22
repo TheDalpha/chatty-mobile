@@ -19,7 +19,9 @@ public class ChatActivity extends AppCompatActivity {
     private static final String TAG = "HEEEEEEEEEEEEEEEEJ";
     private AdapterList aListAdapter;
     private ListView listView;
-    private List<String> list;
+    private List<String> messageList;
+    private List<String> usernameList;
+    private List<String> avatarList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +30,10 @@ public class ChatActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         initViews();
-        list = new ArrayList<>();
-        aListAdapter = new AdapterList(this, list);
+        messageList = new ArrayList<>();
+        usernameList = new ArrayList<>();
+        avatarList = new ArrayList<>();
+        aListAdapter = new AdapterList(this, messageList, usernameList, avatarList);
         MessageService messageService = new MessageService();
         messageService.getMessages(new ApiService() {
             @Override
@@ -56,7 +60,9 @@ public class ChatActivity extends AppCompatActivity {
      */
     private void addItems(Message message) {
 
-        list.add(message.getUser().getUsername());
+        messageList.add(message.getMessage());
+        usernameList.add(message.getUser().getUsername());
+        avatarList.add(message.getUser().getAvatar());
         aListAdapter.notifyDataSetChanged();
 
     }

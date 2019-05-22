@@ -6,20 +6,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 
 import com.example.chatty_mobile.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class AdapterList extends BaseAdapter {
 
     private Activity aContext;
-    private List<String> aList;
+    private List<String> _messageList;
+    private List<String> _usernameList;
+    private List<String> _avatarList;
     private LayoutInflater aLayoutInflator = null;
 
-    public AdapterList(Activity context, List<String> list) {
+    public AdapterList(Activity context, List<String> messageList, List<String> usernameList, List<String> avatarList) {
         this.aContext = context;
-        this.aList = list;
+        this._messageList = messageList;
+        this._usernameList = usernameList;
+        this._avatarList = avatarList;
         aLayoutInflator = (LayoutInflater) aContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -29,7 +35,7 @@ public class AdapterList extends BaseAdapter {
      */
     @Override
     public int getCount() {
-        return aList.size();
+        return _messageList.size();
     }
 
     /**
@@ -39,7 +45,7 @@ public class AdapterList extends BaseAdapter {
      */
     @Override
     public Object getItem(int position) {
-        return aList.get(position);
+        return _messageList.get(position);
     }
 
     /**
@@ -71,7 +77,9 @@ public class AdapterList extends BaseAdapter {
         } else {
             lvHolder = (ListViewHolder) v.getTag();
         }
-        lvHolder.aTVItem.setText(aList.get(position));
+        lvHolder.aTVItem.setText(_messageList.get(position));
+        lvHolder.userName.setText(_usernameList.get(position));
+        Picasso.get().load(_avatarList.get(position)).into(lvHolder.avatar);
         return v;
     }
 }

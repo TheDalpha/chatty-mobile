@@ -5,13 +5,13 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.chatty_mobile.R;
+import com.example.chatty_mobile.services.UserService;
 
 public class CreateActivity extends AppCompatActivity {
 
     private EditText mail, username, password1, password2;
     private Button createBtn;
-    private String imageURL = "https://firebasestorage.googleapis.com/v0/b/chatty-dev-e0191.appspot.com/o/avatars%2Favatar1.png?alt=media&token=bea84094-ad9c-49ac-b7ee-1eacd458591d";
-
+    private String imageURL = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +23,13 @@ public class CreateActivity extends AppCompatActivity {
         password1 = findViewById(R.id.password1Et);
         password2 = findViewById(R.id.password2Et);
         createBtn = findViewById(R.id.btnCreate);
+
+        UserService uService = new UserService();
+
+        uService.create("tizz3n@hotmail.com", "sutmig",
+                "MissTizz", "https://example.com/avatar1.png");
+
+
 
     }
 }

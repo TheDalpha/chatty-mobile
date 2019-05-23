@@ -6,7 +6,9 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/my_toolbar"
@@ -21,7 +23,7 @@
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
             />
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerInParent="true"
@@ -29,56 +31,71 @@
             android:gravity="center">
 
             <TextView
-                android:layout_width="200dp"
+                android:id="@+id/textHeader"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
+                android:layout_above="@+id/gridView"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="10dp"
                 android:text="Create User"
-                android:gravity="center"
                 android:textColor="#8194CF"
-                android:textStyle="bold"
                 android:textSize="24dp"
-                android:layout_marginBottom="25dp"
-                />
+                android:textAlignment="center"
+                android:textStyle="bold" />
 
 
             <EditText
                 android:id="@+id/emailEt"
-                android:layout_width="200dp"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
+                android:layout_above="@id/usernameEt"
                 android:hint="Email"
                 android:layout_marginBottom="5dp"
                 />
 
             <EditText
                 android:id="@+id/usernameEt"
-                android:layout_width="200dp"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
+                android:layout_above="@+id/password1Et"
                 android:hint="Username"
                 android:layout_marginBottom="5dp"/>
 
             <EditText
                 android:id="@+id/password1Et"
-                android:layout_width="200dp"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
+                android:layout_above="@+id/password2Et"
                 android:inputType="textPassword"
                 android:hint="Password"
                 android:layout_marginBottom="5dp"/>
 
             <EditText
                 android:id="@+id/password2Et"
-                android:layout_width="200dp"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
+                android:layout_above="@+id/createBtn"
                 android:hint="Confirm Password"
                 android:inputType="textPassword"
                 android:layout_marginBottom="10dp"/>
 
             <Button
                 android:id="@+id/createBtn"
-                android:layout_width="200dp"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:text="Create User"
                 android:backgroundTint="#35B7AD"
+                android:layout_marginBottom="20dp"
                 android:textColor="@android:color/white"/>
-        </LinearLayout>
+
+            <GridView
+                android:id="@+id/gridView"
+                android:layout_width="250dp"
+                android:layout_above="@+id/emailEt"
+                android:layout_height="150dp"
+                android:footerDividersEnabled="false"
+                android:numColumns="4" />
+        </RelativeLayout>
     </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

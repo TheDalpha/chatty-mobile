@@ -15,7 +15,7 @@ public class ListViewHolder {
     public ImageView imgMessenge;
 
     /**
-     * Gets the textview from the XML document
+     * Gets all the views from the XML document
      * @param base textview
      */
     public ListViewHolder(View base) {

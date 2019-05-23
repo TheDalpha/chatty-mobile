@@ -42,14 +42,14 @@
 
             <EditText
                 android:id="@+id/fieldEmail"
-                android:layout_width="200dp"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:hint="Email"
                 />
 
             <EditText
                 android:id="@+id/fieldPassword"
-                android:layout_width="200dp"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:hint="Password"
                 android:inputType="textPassword"/>
@@ -58,14 +58,14 @@
                 android:layout_marginTop="30dp"
                 android:id="@+id/btnLogin"
                 android:layout_height="wrap_content"
-                android:layout_width="200dp"
+                android:layout_width="250dp"
                 android:backgroundTint="#35B7AD"
                 android:text="Login"
                 android:textColor="@android:color/white" />
 
             <Button
                 android:id="@+id/btnCreate"
-                android:layout_width="200dp"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#35B7AD"
                 android:text="Create User"

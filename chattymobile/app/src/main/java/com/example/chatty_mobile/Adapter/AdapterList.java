@@ -18,8 +18,6 @@ public class AdapterList extends BaseAdapter {
 
     private Activity aContext;
     private List<Message> _messageList;
-    private List<String> _usernameList;
-    private List<String> _avatarList;
     private LayoutInflater aLayoutInflator = null;
 
     public AdapterList(Activity context, List<Message> messageList) {
@@ -58,7 +56,7 @@ public class AdapterList extends BaseAdapter {
     }
 
     /**
-     * Inflates the listview with a textview
+     * Inflates the listview with views and sets the views
      * @param position position of the textview
      * @param convertView textview
      * @param parent

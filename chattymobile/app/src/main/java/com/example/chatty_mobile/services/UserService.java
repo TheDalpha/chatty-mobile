@@ -1,12 +1,23 @@
 package com.example.chatty_mobile.services;
 
-import android.nfc.Tag;
+import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.util.Log;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.Map;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -19,6 +30,10 @@ import okhttp3.Response;
 import static android.content.ContentValues.TAG;
 
 public class UserService {
+
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private FirebaseStorage storage = FirebaseStorage.getInstance();
+    StorageReference storageRef = storage.getReference();
 
     final OkHttpClient client = new OkHttpClient();
 
@@ -57,6 +72,35 @@ public class UserService {
                 // refers to response.status('200') or ('500')
                 int responseCode = response.code();
                 Log.d(TAG, "response: " + responseCode);
+            }
+        });
+    }
+
+    /**
+     * Gets all avatar names from firebase documents
+     * then gets the download url of the avatar from firestorage
+     * @param iUserService
+     */
+    public void getAvatars(final IUserService iUserService) {
+        db.collection("avatars").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        Map<String, Object> map = document.getData();
+                        String avatarName = map.get("fileName") + "";
+                        storageRef.child("avatars/" + avatarName).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                Log.d(TAG, "onSuccess: " + uri.toString() + "-------------------------------------------------------");
+                                iUserService.onCallback(uri.toString());
+                            }
+                        });
+
+                    }
+                } else {
+                    Log.w(TAG, "Error getting documents.", task.getException());
+                }
             }
         });
     }

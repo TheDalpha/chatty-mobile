@@ -43,19 +43,27 @@ public class CreateActivity extends AppCompatActivity {
        createBtn.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               //Checks if the two passwords are the same
-               if (password1.getText().toString().equals(password2.getText().toString())) {
-                   //Sends a request to UserService
-                   uService.create(mail.getText().toString(), password1.getText().toString(),
-                           username.getText().toString(), imageURL);
-                   //Redirect to login page
-                   startActivity(login);
-                   //If it is succesfully created, display a message to the user.
-                   Toast.makeText(CreateActivity.this, "Create Success",
-                           Toast.LENGTH_SHORT).show();
+
+               int passMinLenght = 6;
+               //Checks if the password is minimum 6 characters long and if both password match
+               if (password1.length() >= passMinLenght) {
+                   if (password1.getText().toString().equals(password2.getText().toString())) {
+                       //Sends a request to UserService
+                       uService.create(mail.getText().toString(), password1.getText().toString(),
+                               username.getText().toString(), imageURL);
+                       //Redirect to login page
+                       startActivity(login);
+                       //If it is succesfully created, display a message to the user.
+                       Toast.makeText(CreateActivity.this, "Create Success",
+                               Toast.LENGTH_SHORT).show();
+                   } else {
+                       // If create fails, display a message to the user.
+                       Toast.makeText(CreateActivity.this, "Create failed: \nPasswords do not match",
+                               Toast.LENGTH_SHORT).show();
+                   }
                } else {
-                   // If create fails, display a message to the user.
-                   Toast.makeText(CreateActivity.this, "Create failed: \nPasswords do not match",
+                   // displays a text to user if password is not long enough
+                   Toast.makeText(CreateActivity.this, "Create failed: \nPassword need to be atleast 6 characters long",
                            Toast.LENGTH_SHORT).show();
                }
            }

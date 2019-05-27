@@ -1,24 +1,19 @@
 package com.example.chatty_mobile.services;
 
-import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.example.chatty_mobile.models.Message;
 import com.example.chatty_mobile.models.User;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.sql.Time;
 import java.util.Date;
 import java.util.Map;
 
@@ -38,6 +33,10 @@ public class MessageService {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     final OkHttpClient client = new OkHttpClient();
 
+    /**
+     * Creates the JSON object for message and then a request for the requestCall
+     * @param message Message to be sent
+     */
     public void sendMessage(Message message) {
 
         JSONObject postData = new JSONObject();
@@ -77,7 +76,11 @@ public class MessageService {
         });
     }
 
-    public void getNewMessage(final ApiService apiService) {
+    /**
+     * Adds a listener to the messages collection on firebase and then creates the message object to be shown on view.
+     * @param IMessageService
+     */
+    public void getNewMessage(final IMessageService IMessageService) {
         db.collection("messages").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
@@ -99,9 +102,7 @@ public class MessageService {
                             Date date = new Date(Long.parseLong(map.get("time") + ""));
                             message.setTime(date);
                             message.setUser(user);
-                            apiService.onCallback(message);
-
-                            Log.d("TAG", "New Msg: " + dc.getDocument().toObject(Message.class));
+                            IMessageService.onCallback(message);
                             break;
                         case MODIFIED:
                             Log.d("TAG", "Modified Msg: " + dc.getDocument().toObject(Message.class));

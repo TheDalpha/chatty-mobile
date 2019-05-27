@@ -1,9 +1,7 @@
 package com.example.chatty_mobile.activities;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -13,13 +11,12 @@ import com.example.chatty_mobile.Adapter.AdapterList;
 import com.example.chatty_mobile.R;
 import com.example.chatty_mobile.models.Message;
 import com.example.chatty_mobile.models.User;
-import com.example.chatty_mobile.services.ApiService;
+import com.example.chatty_mobile.services.IMessageService;
 import com.example.chatty_mobile.services.MessageService;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -46,7 +43,8 @@ public class ChatActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         messageList = new ArrayList<>();
         aListAdapter = new AdapterList(this, messageList);
-        messageService.getNewMessage(new ApiService() {
+
+        messageService.getNewMessage(new IMessageService() {
             @Override
             public void onCallback(Message message) {
                 addItems(message);
@@ -88,7 +86,7 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     /**
-     * adds a message item to a list and then notifys the adaoter of changes
+     * adds a message item to a list, sort it by date and then notifies the adaoter of changes
      * @param message object that contains messages
      */
     private void addItems(Message message) {
@@ -104,6 +102,9 @@ public class ChatActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Sets the ListView to the last message sent.
+     */
     private void scrollListViewToBottom() {
         listView.post(new Runnable() {
             @Override

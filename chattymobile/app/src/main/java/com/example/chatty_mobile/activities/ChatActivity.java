@@ -87,7 +87,7 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     /**
-     * adds a message item to a list, sort it by date and then notifies the adaoter of changes
+     * adds a message item to a list, sort it by date and then notifies the adapter of changes
      * @param message object that contains messages
      */
     private void addItems(Message message) {

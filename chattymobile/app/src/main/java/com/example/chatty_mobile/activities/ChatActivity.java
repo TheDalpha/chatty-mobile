@@ -70,6 +70,7 @@ public class ChatActivity extends AppCompatActivity {
                 message.setTime(new Date());
 
                 messageService.sendMessage(message);
+                msgText.getText().clear();
 
             }
         });

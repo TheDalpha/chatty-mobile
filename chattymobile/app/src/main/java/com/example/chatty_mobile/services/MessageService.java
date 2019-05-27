@@ -1,8 +1,10 @@
 package com.example.chatty_mobile.services;
 
+import android.graphics.Bitmap;
 import android.util.Log;
 
 import com.example.chatty_mobile.models.Message;
+import com.example.chatty_mobile.models.Picture;
 import com.example.chatty_mobile.models.User;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
@@ -114,6 +116,44 @@ public class MessageService {
         }
     }
     });
+    }
+
+    public void uploadImage(Picture picture) {
+        JSONObject postData = new JSONObject();
+        JSONObject senderData = new JSONObject();
+
+        try {
+            postData.put("type", picture.getType());
+            postData.put("size", picture.getSize());
+            postData.put("base64File", picture.getBase64File());
+            senderData.put("avatarUrl", picture.getUser().getAvatar());
+            senderData.put("userName", picture.getUser().getUsername());
+            postData.put("user",senderData);
+        } catch (JSONException e1) {
+            e1.printStackTrace();
+        }
+
+        RequestBody body = RequestBody.create(MediaType.get("application/json; charset=utf-8"), postData.toString());
+
+        final Request request = new Request.Builder()
+                .url("https://us-central1-chatty-dev-e0191.cloudfunctions.net/api/files")
+                .post(body)
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.d(TAG, "onFailure: Message not sent" + e.getMessage() + "--------------------------------");
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+
+                int responseCode = response.code();
+                Log.d(TAG, "response: " + responseCode);
+
+            }
+        });
     }
 }
 

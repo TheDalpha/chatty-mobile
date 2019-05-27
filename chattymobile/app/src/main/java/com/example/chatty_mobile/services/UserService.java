@@ -92,7 +92,6 @@ public class UserService {
                         storageRef.child("avatars/" + avatarName).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(Uri uri) {
-                                Log.d(TAG, "onSuccess: " + uri.toString() + "-------------------------------------------------------");
                                 iUserService.onCallback(uri.toString());
                             }
                         });

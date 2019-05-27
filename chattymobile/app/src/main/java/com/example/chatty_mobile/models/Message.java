@@ -1,5 +1,7 @@
 package com.example.chatty_mobile.models;
 
+import java.util.Date;
+
 public class Message {
 
     private String _content;
@@ -8,7 +10,7 @@ public class Message {
 
     private Boolean _isFile;
 
-    private float _time;
+    private Date _time;
 
     public Boolean getIsFile() {
         return _isFile;
@@ -32,9 +34,9 @@ public class Message {
 
     public User setUser(User user) { return _user = user;}
 
-    public float getTime() {return _time; }
+    public Date getTime() {return _time; }
 
-    public float setTime(float time) {return _time = time; }
+    public Date setTime(Date time) {return _time = time; }
 
 
 }

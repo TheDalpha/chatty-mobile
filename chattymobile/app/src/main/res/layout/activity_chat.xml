@@ -48,21 +48,38 @@
         android:layout_height="wrap_content">
 
         <EditText
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
+            android:maxLines="1"
             android:layout_height="wrap_content"
             android:id="@+id/txtSend"
             android:background="@android:color/transparent"
             android:hint="Type a message..."
-            android:layout_toLeftOf="@id/btnSend"
             android:layout_centerVertical="true"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/ic_action_name"
                 android:id="@+id/btnSend"
+                android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"/>
+                />
+
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/ic_action_camera"
+            android:id="@+id/btnPicture"
+            android:layout_marginRight="15dp"
+            android:layout_toLeftOf="@+id/btnSend"
+
+            />
+
+        </RelativeLayout>
 
     </RelativeLayout>
 

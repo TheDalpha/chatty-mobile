@@ -137,6 +137,9 @@ public class ChatActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Opens camera to take picture
+     */
     private void takePicture() {
         Intent camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         camera.putExtra(MediaStore.EXTRA_OUTPUT, pFile);
@@ -148,6 +151,12 @@ public class ChatActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Gets the result from camera activity and sent data to model
+     * @param requestCode code of the request
+     * @param resultCode code of the result
+     * @param data picture data
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 100 && resultCode == RESULT_OK) {
@@ -165,6 +174,12 @@ public class ChatActivity extends AppCompatActivity {
         }
     }
 
+
+    /**
+     * converts the bitmap of the picture to base64
+     * @param photo bitmap of picture
+     * @return base64 string of file
+     */
     private String getBase64(Bitmap photo) {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         photo.compress(Bitmap.CompressFormat.PNG, 100, outputStream);

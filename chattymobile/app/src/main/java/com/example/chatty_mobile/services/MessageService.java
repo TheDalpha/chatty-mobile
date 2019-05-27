@@ -118,6 +118,11 @@ public class MessageService {
     });
     }
 
+
+    /**
+     * Creates the JSON object for image and then a request for the requestCall
+     * @param picture Picture to be sent
+     */
     public void uploadImage(Picture picture) {
         JSONObject postData = new JSONObject();
         JSONObject senderData = new JSONObject();

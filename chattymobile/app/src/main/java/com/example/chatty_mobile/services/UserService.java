@@ -55,7 +55,7 @@ public class UserService {
         RequestBody body = RequestBody.create(MediaType.get("application/json; charset=utf-8"), postData.toString());
 
         final Request request = new Request.Builder()
-                .url("https://us-central1-chatty-dev-e0191.cloudfunctions.net/api/users/create")
+                .url("https://us-central1-chatty-b7a7e.cloudfunctions.net/api/users/create")
                 .post(body)
                 .build();
 
@@ -79,6 +79,7 @@ public class UserService {
     /**
      * Gets all avatar names from firebase documents
      * then gets the download url of the avatar from firestorage
+     *
      * @param iUserService
      */
     public void getAvatars(final IUserService iUserService) {

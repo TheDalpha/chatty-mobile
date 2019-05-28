@@ -2,7 +2,6 @@ package com.example.chatty_mobile.Adapter;
 
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.example.chatty_mobile.R;
 
@@ -13,6 +12,7 @@ public class AvatarViewHolder {
 
     /**
      * Gets the view from the XML file
+     *
      * @param base
      */
     public AvatarViewHolder(View base) {

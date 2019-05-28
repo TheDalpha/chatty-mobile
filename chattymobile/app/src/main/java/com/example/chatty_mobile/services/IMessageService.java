@@ -6,6 +6,7 @@ public interface IMessageService {
 
     /**
      * A method that waits for answer from firebase so all messages loads in.
+     *
      * @param message
      */
     void onCallback(Message message);

@@ -2,7 +2,6 @@ package com.example.chatty_mobile.Adapter;
 
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.chatty_mobile.R;
@@ -16,6 +15,7 @@ public class ListViewHolder {
 
     /**
      * Gets all the views from the XML document
+     *
      * @param base textview
      */
     public ListViewHolder(View base) {

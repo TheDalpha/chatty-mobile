@@ -2,16 +2,15 @@ package com.example.chatty_mobile.Adapter;
 
 import android.app.Activity;
 import android.content.Context;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 
 import com.example.chatty_mobile.R;
 import com.example.chatty_mobile.models.Message;
 import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 public class AdapterList extends BaseAdapter {
@@ -28,6 +27,7 @@ public class AdapterList extends BaseAdapter {
 
     /**
      * Gets the total size of the list
+     *
      * @return zize of the list
      */
     @Override
@@ -37,6 +37,7 @@ public class AdapterList extends BaseAdapter {
 
     /**
      * Gets the item position
+     *
      * @param position
      * @return
      */
@@ -47,6 +48,7 @@ public class AdapterList extends BaseAdapter {
 
     /**
      * Gets the item id on position
+     *
      * @param position
      * @return
      */
@@ -57,7 +59,8 @@ public class AdapterList extends BaseAdapter {
 
     /**
      * Inflates the listview with views and sets the views
-     * @param position position of the textview
+     *
+     * @param position    position of the textview
      * @param convertView textview
      * @param parent
      * @return
@@ -66,7 +69,7 @@ public class AdapterList extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View v = convertView;
         ListViewHolder lvHolder;
-        if( convertView == null ) {
+        if (convertView == null) {
             LayoutInflater li = (LayoutInflater) aContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             v = li.inflate(R.layout.list_layout, null);
             lvHolder = new ListViewHolder(v);
@@ -74,7 +77,7 @@ public class AdapterList extends BaseAdapter {
         } else {
             lvHolder = (ListViewHolder) v.getTag();
         }
-        if(_messageList.get(position).getIsFile()) {
+        if (_messageList.get(position).getIsFile()) {
             Picasso.get().load(_messageList.get(position).getMessage()).into(lvHolder.imgMessenge);
             lvHolder.imgMessenge.setVisibility(View.VISIBLE);
             lvHolder.aTVItem.setVisibility(View.GONE);

@@ -1,12 +1,10 @@
 package com.example.chatty_mobile.activities;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.provider.OpenableColumns;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
@@ -26,7 +24,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -109,6 +106,7 @@ public class ChatActivity extends AppCompatActivity {
 
     /**
      * adds a message item to a list, sort it by date and then notifies the adapter of changes
+     *
      * @param message object that contains messages
      */
     private void addItems(Message message) {
@@ -153,9 +151,10 @@ public class ChatActivity extends AppCompatActivity {
 
     /**
      * Gets the result from camera activity and sent data to model
+     *
      * @param requestCode code of the request
-     * @param resultCode code of the result
-     * @param data picture data
+     * @param resultCode  code of the result
+     * @param data        picture data
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -177,6 +176,7 @@ public class ChatActivity extends AppCompatActivity {
 
     /**
      * converts the bitmap of the picture to base64
+     *
      * @param photo bitmap of picture
      * @return base64 string of file
      */

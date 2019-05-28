@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import com.example.chatty_mobile.R;
-import com.example.chatty_mobile.models.Message;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -27,6 +26,7 @@ public class AvatarAdapter extends BaseAdapter {
 
     /**
      * gets the size of the list
+     *
      * @return size of the list
      */
     @Override
@@ -36,6 +36,7 @@ public class AvatarAdapter extends BaseAdapter {
 
     /**
      * Gets the item position
+     *
      * @param position
      * @return position of the item
      */
@@ -46,6 +47,7 @@ public class AvatarAdapter extends BaseAdapter {
 
     /**
      * Gets the item id on position
+     *
      * @param position
      * @return
      */
@@ -56,6 +58,7 @@ public class AvatarAdapter extends BaseAdapter {
 
     /**
      * inflates the gridview with views and sets the views
+     *
      * @param position
      * @param convertView
      * @param parent
@@ -65,7 +68,7 @@ public class AvatarAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View v = convertView;
         AvatarViewHolder avHolder;
-        if( convertView == null ) {
+        if (convertView == null) {
             LayoutInflater li = (LayoutInflater) aContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             v = li.inflate(R.layout.avatar_layout, null);
             avHolder = new AvatarViewHolder(v);

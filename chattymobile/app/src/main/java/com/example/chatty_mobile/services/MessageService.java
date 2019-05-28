@@ -1,6 +1,5 @@
 package com.example.chatty_mobile.services;
 
-import android.graphics.Bitmap;
 import android.util.Log;
 
 import com.example.chatty_mobile.models.Message;
@@ -37,6 +36,7 @@ public class MessageService {
 
     /**
      * Creates the JSON object for message and then a request for the requestCall
+     *
      * @param message Message to be sent
      */
     public void sendMessage(Message message) {
@@ -49,7 +49,7 @@ public class MessageService {
             postData.put("isFile", message.getIsFile());
             senderData.put("avatarUrl", message.getUser().getAvatar());
             senderData.put("userName", message.getUser().getUsername());
-            postData.put("sender",senderData);
+            postData.put("sender", senderData);
             postData.put("time", message.getTime().getTime());
         } catch (JSONException e1) {
             e1.printStackTrace();
@@ -58,7 +58,7 @@ public class MessageService {
         RequestBody body = RequestBody.create(MediaType.get("application/json; charset=utf-8"), postData.toString());
 
         final Request request = new Request.Builder()
-                .url("https://us-central1-chatty-dev-e0191.cloudfunctions.net/api/message")
+                .url("https://us-central1-chatty-b7a7e.cloudfunctions.net/api/message")
                 .post(body)
                 .build();
 
@@ -80,6 +80,7 @@ public class MessageService {
 
     /**
      * Adds a listener to the messages collection on firebase and then creates the message object to be shown on view.
+     *
      * @param IMessageService
      */
     public void getNewMessage(final IMessageService IMessageService) {
@@ -87,9 +88,9 @@ public class MessageService {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
                 if (e != null) {
-                    Log.w(TAG, "onEvent: ",e );
+                    Log.w(TAG, "onEvent: ", e);
                     return;
-            }
+                }
                 for (DocumentChange dc : queryDocumentSnapshots.getDocumentChanges()) {
                     switch (dc.getType()) {
                         case ADDED:
@@ -104,6 +105,7 @@ public class MessageService {
                             Date date = new Date(Long.parseLong(map.get("time") + ""));
                             message.setTime(date);
                             message.setUser(user);
+                            Log.d(TAG, message.getMessage() + "--------------------");
                             IMessageService.onCallback(message);
                             break;
                         case MODIFIED:
@@ -113,14 +115,15 @@ public class MessageService {
                             Log.d("TAG", "Removed Msg: " + dc.getDocument().toObject(Message.class));
                             break;
                     }
-        }
-    }
-    });
+                }
+            }
+        });
     }
 
 
     /**
      * Creates the JSON object for image and then a request for the requestCall
+     *
      * @param picture Picture to be sent
      */
     public void uploadImage(Picture picture) {
@@ -133,7 +136,7 @@ public class MessageService {
             postData.put("base64File", picture.getBase64File());
             senderData.put("avatarUrl", picture.getUser().getAvatar());
             senderData.put("userName", picture.getUser().getUsername());
-            postData.put("user",senderData);
+            postData.put("user", senderData);
         } catch (JSONException e1) {
             e1.printStackTrace();
         }
@@ -141,7 +144,7 @@ public class MessageService {
         RequestBody body = RequestBody.create(MediaType.get("application/json; charset=utf-8"), postData.toString());
 
         final Request request = new Request.Builder()
-                .url("https://us-central1-chatty-dev-e0191.cloudfunctions.net/api/files")
+                .url("https://us-central1-chatty-b7a7e.cloudfunctions.net/api/files")
                 .post(body)
                 .build();
 
